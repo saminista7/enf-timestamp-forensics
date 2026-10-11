@@ -1,0 +1,292 @@
+# Site metadata for the open grid frequency recordings. Hand written, because none of this
+# can be derived from the files themselves.
+#
+# Only what the data does not say: which synchronous area a site sits in, its timezone, and
+# any published control deadband. Everything measurable is computed from the files, since a
+# hand typed number that disagrees with the data is worse than no number at all.
+#
+# `nominal_hz` is a cross check rather than an input. The csv column is named f50_* or f60_*
+# and the loader asserts the file agrees with what is declared here.
+#
+# `area` matters when counting independent observations. Nine of these sites are the same
+# Continental European grid, so they are nine sensors on one thing, not nine things.
+#
+# Sources for the area and deadband facts: Jumar et al. arXiv:2006.01771, and Rydin Gorjao
+# et al. Nature Communications 11:6362 (2020). Anything uncertain is left out rather than
+# guessed at.
+
+sites:
+  DE_KA01:
+    area: continental_europe
+    country: Germany
+    city: Karlsruhe
+    nominal_hz: 50
+    tz: Europe/Berlin
+    notes: ships only a 100 ms zip, no 1 s csv
+  DE_OL01:
+    area: continental_europe
+    country: Germany
+    city: Oldenburg
+    nominal_hz: 50
+    tz: Europe/Berlin
+    notes: ships only a 100 ms zip, no 1 s csv
+  FR01:
+    area: continental_europe
+    country: France
+    city: Lauris
+    nominal_hz: 50
+    tz: Europe/Paris
+  HR01:
+    area: continental_europe
+    country: Croatia
+    city: Split
+    nominal_hz: 50
+    tz: Europe/Zagreb
+  IT01:
+    area: continental_europe
+    country: Italy
+    city: Erice (Sicily)
+    nominal_hz: 50
+    tz: Europe/Rome
+  PL01:
+    area: continental_europe
+    country: Poland
+    city: Krakow
+    nominal_hz: 50
+    tz: Europe/Warsaw
+  PT01:
+    area: continental_europe
+    country: Portugal
+    city: Lisbon
+    nominal_hz: 50
+    tz: Europe/Lisbon
+  PT_LI01:
+    area: continental_europe
+    country: Portugal
+    city: Lisbon
+    nominal_hz: 50
+    tz: Europe/Lisbon
+    notes: ships only a 100 ms zip, no 1 s csv
+  TUR_IS01:
+    area: continental_europe
+    country: Turkey
+    city: Istanbul
+    nominal_hz: 50
+    tz: Europe/Istanbul
+    notes: ships only a 100 ms zip, no 1 s csv. Turkey has been synchronous with Continental Europe
+      since 2010, so same area, but electrically peripheral
+  sync01:
+    area: continental_europe
+    country: multiple
+    city: Karlsruhe + Oldenburg + Lisbon + Istanbul
+    nominal_hz: 50
+    tz: UTC
+    multi_site: true
+    notes: 'one file holding four simultaneous GPS synchronised sites: DE_KA, DE_OL, PT, TR. Needs
+      an explicit suffix= to load. QI==1 has campaign specific meaning here'
+  GB01:
+    area: great_britain
+    country: United Kingdom
+    city: London
+    nominal_hz: 50
+    tz: Europe/London
+    notes: frequency column is named f50_UK, not f50_GB
+  GB02:
+    area: great_britain
+    country: United Kingdom
+    city: London
+    nominal_hz: 50
+    tz: Europe/London
+    notes: frequency column is named f50_UK, not f50_GB
+  SE01:
+    area: nordic
+    country: Sweden
+    city: Stockholm
+    nominal_hz: 50
+    tz: Europe/Stockholm
+  EE01:
+    area: baltic
+    country: Estonia
+    city: Tallinn
+    nominal_hz: 50
+    tz: Europe/Tallinn
+    notes: measured 2019, when the Baltic states were still synchronous with IPS/UPS. They desynchronised
+      in Feb 2025, so this is the 2019 configuration
+  ES_GC01:
+    area: gran_canaria
+    country: Spain
+    city: Las Palmas
+    nominal_hz: 50
+    tz: Atlantic/Canary
+  ES_GC02:
+    area: gran_canaria
+    country: Spain
+    city: Las Palmas
+    nominal_hz: 50
+    tz: Atlantic/Canary
+  ES_PM01:
+    area: balearic
+    country: Spain
+    city: Palma de Mallorca
+    nominal_hz: 50
+    tz: Europe/Madrid
+  ES_PM02:
+    area: balearic
+    country: Spain
+    city: Palma de Mallorca
+    nominal_hz: 50
+    tz: Europe/Madrid
+    notes: largest single file in the corpus, about 1.3 GB
+  ES_PM03:
+    area: balearic
+    country: Spain
+    city: Palma de Mallorca
+    nominal_hz: 50
+    tz: Europe/Madrid
+  ES_PM_solar_eclipse_2026:
+    area: balearic
+    country: Spain
+    city: Palma de Mallorca
+    nominal_hz: 50
+    tz: Europe/Madrid
+    exclude_from_primary: true
+    notes: event campaign around the Aug 2026 eclipse. Comma separated, values in absolute Hz,
+      and no timestamp column, so the loader refuses it
+  FO01:
+    area: faroe
+    country: Faroe Islands
+    city: Vestmanna
+    nominal_hz: 50
+    tz: Atlantic/Faroe
+  IS01:
+    area: iceland
+    country: Iceland
+    city: Reykjavik
+    nominal_hz: 50
+    tz: Atlantic/Reykjavik
+  KR01:
+    area: korea
+    country: South Korea
+    city: Naju
+    nominal_hz: 60
+    tz: Asia/Seoul
+  MY01:
+    area: peninsular_malaysia
+    country: Malaysia
+    city: Kuala Lumpur
+    nominal_hz: 50
+    tz: Asia/Kuala_Lumpur
+    expected_deadband_mhz: 25
+    notes: timestamps carry fractional seconds
+  RU01:
+    area: ips_ups
+    country: Russia
+    city: Saint Petersburg
+    nominal_hz: 50
+    tz: Europe/Moscow
+  US_CO01:
+    area: us_western
+    country: United States
+    city: Boulder, Colorado
+    nominal_hz: 60
+    tz: America/Denver
+    notes: longest non European record here, about 10 months
+  US_UT01:
+    area: us_western
+    country: United States
+    city: Salt Lake City, Utah
+    nominal_hz: 60
+    tz: America/Denver
+  US_FL01:
+    area: us_eastern
+    country: United States
+    city: Florida
+    nominal_hz: 60
+    tz: America/New_York
+  US_TX01:
+    area: ercot
+    country: United States
+    city: College Station, Texas
+    nominal_hz: 60
+    tz: America/Chicago
+  US_TX02:
+    area: ercot
+    country: United States
+    city: College Station, Texas
+    nominal_hz: 60
+    tz: America/Chicago
+  ZA01:
+    area: south_africa
+    country: South Africa
+    city: Cape Town
+    nominal_hz: 50
+    tz: Africa/Johannesburg
+  ZA02:
+    area: south_africa
+    country: South Africa
+    city: Stellenbosch
+    nominal_hz: 50
+    tz: Africa/Johannesburg
+    notes: about 4 months at 1 s. Unnamed first column, and 2.57M non finite samples, all at QI
+      != 0
+areas:
+  continental_europe:
+    label: Continental Europe
+    nominal_hz: 50
+    kind: interconnection
+  great_britain:
+    label: Great Britain
+    nominal_hz: 50
+    kind: interconnection
+  nordic:
+    label: Nordic
+    nominal_hz: 50
+    kind: interconnection
+  baltic:
+    label: Baltic (2019, IPS/UPS-synchronous)
+    nominal_hz: 50
+    kind: interconnection
+  ips_ups:
+    label: IPS/UPS
+    nominal_hz: 50
+    kind: interconnection
+  us_western:
+    label: US Western Interconnection
+    nominal_hz: 60
+    kind: interconnection
+  us_eastern:
+    label: US Eastern Interconnection
+    nominal_hz: 60
+    kind: interconnection
+  ercot:
+    label: ERCOT (Texas)
+    nominal_hz: 60
+    kind: interconnection
+  korea:
+    label: Korea
+    nominal_hz: 60
+    kind: interconnection
+  peninsular_malaysia:
+    label: Peninsular Malaysia
+    nominal_hz: 50
+    kind: interconnection
+  south_africa:
+    label: South Africa (Eskom)
+    nominal_hz: 50
+    kind: interconnection
+  iceland:
+    label: Iceland
+    nominal_hz: 50
+    kind: island
+  faroe:
+    label: Faroe Islands
+    nominal_hz: 50
+    kind: island
+  gran_canaria:
+    label: Gran Canaria
+    nominal_hz: 50
+    kind: island
+  balearic:
+    label: Balearic (Mallorca)
+    nominal_hz: 50
+    kind: island

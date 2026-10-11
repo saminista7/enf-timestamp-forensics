@@ -1,0 +1,57 @@
+# --- data: never committed, always regenerable from the manifest ---
+data/raw/
+data/interim/
+data/processed/
+!data/manifest/
+
+# results. per-trial output is big and regenerable
+results/trials/
+results/landscape/
+results/*.parquet
+results/*.csv
+
+# figures, rebuilt from the notebooks
+figures/*.pdf
+figures/*.png
+figures/*.prov.json
+
+# --- env ---
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# --- notebooks: outputs stripped by nbstripout; keep the paired .py as the diffable source ---
+# (the .ipynb files themselves ARE committed, stripped of outputs)
+
+# --- latex ---
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.bbl
+paper/*.blg
+paper/*.synctex.gz
+paper/*.fdb_latexmk
+paper/*.fls
+paper/figures/
+
+# --- os ---
+Thumbs.db
+.DS_Store
+
+# cloned datasets
+data/raw/enf_whu/
+
+# internal working material, never committed
+internal/
+
+# test cache
+.hypothesis/
+
+# personal notes, never commit. kept outside the repo as well
+*CONTEXT.md
+*-CV*.md
